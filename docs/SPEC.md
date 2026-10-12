@@ -72,7 +72,9 @@ Visual details not covered by the sources are approximations of typical Maxi 77s
   - Crew hiking: `H`
   - Pause: Space
   - Time scale (1×, 4×, 16×): `1`, `2`, `3`
-  - Hint: `F1`
+  - Hint: `F1` or `I`
+  - Lock tiller: `L`; centre tiller: `X`
+  - Camera: `C`; menu: `Esc`
 
   Every control except the tiller also has an on-screen control. The jib sheet auto-switches on tacks only when the lesson enables it ("Auto jib").
 

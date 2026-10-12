@@ -483,7 +483,7 @@ export class LessonRun {
     }
     const goals = this.states.filter((_, i) => this.objectives[i].kind === 'goal');
     if (this.states.some((s) => s.failed)) this.status = 'failed';
-    else if (goals.every((s) => s.done)) {
+    else if (goals.length > 0 && goals.every((s) => s.done)) {
       this.status = 'passed';
       const bad = this.sim.events.filter((e) => ['crashGybe', 'roundUp', 'knockdown', 'irons'].includes(e.type)).length;
       this.score = Math.max(10, Math.round(100 - (50 * this.sim.t) / this.lesson.timeLimit - 10 * bad));
