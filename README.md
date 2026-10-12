@@ -53,6 +53,8 @@ Any other date from 1940 onward is fetched live from Open-Meteo.
 | I (or F1) | Hint: shows the optimal sheet settings as yellow ghost markers |
 | C · Space · 1/2/3 · Esc | Camera (chase / helm / top) · pause · time 1×/4×/16× · menu |
 
+On a weak GPU, open the app with `?quality=low` (coarser sea, no shadows).
+
 ## How it works
 - **Boat data:** LOA 7.62 m, LWL 6.75, beam 2.50, draft 1.45, displacement 2000 kg with 800 kg ballast. Rig: I 9.17, J 3.33, P 7.50, E 2.50 m. Sails: main 9.66 m², genoa 23.2 m², jib 15.0 m². Sources are in [`docs/SPEC.md`](docs/SPEC.md).
 - **Physics** (`src/sim/physics.ts`): the simulation runs at a fixed 120 Hz and covers surge, sway, yaw and roll.

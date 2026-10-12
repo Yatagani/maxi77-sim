@@ -155,12 +155,14 @@ export class World {
   private gustVecs = Array.from({ length: 24 }, () => new THREE.Vector4());
 
   constructor(container: HTMLElement) {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
-    this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+    // ?quality=low for weak GPUs (and headless CI): coarser sea, no shadows, 1x pixels
+    const low = new URLSearchParams(location.search).get('quality') === 'low';
+    this.renderer = new THREE.WebGLRenderer({ antialias: !low, preserveDrawingBuffer: true });
+    this.renderer.setPixelRatio(low ? 1 : Math.min(2, window.devicePixelRatio));
     this.renderer.setSize(container.clientWidth, container.clientHeight);
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 0.55;
-    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.enabled = !low;
     container.appendChild(this.renderer.domElement);
 
     this.camera = new THREE.PerspectiveCamera(55, container.clientWidth / container.clientHeight, 0.1, 30000);
@@ -198,7 +200,7 @@ export class World {
     this.scene.add(new THREE.HemisphereLight('#cfe3ff', '#20384a', 0.6));
     this.scene.fog = new THREE.Fog('#b9cfdf', 3000, 14000);
 
-    this.sea = new Sea(sunDir);
+    this.sea = new Sea(sunDir, low ? 96 : 320);
     this.scene.add(this.sea.mesh);
     this.scene.add(this.wake.mesh);
     this.scene.add(this.boat.root);

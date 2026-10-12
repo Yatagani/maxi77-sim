@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export const MAX_GUSTS = 24;
 const SIZE = 2400;
-const SEG = 320;
+
 
 const vert = /* glsl */ `
 uniform float uTime;
@@ -110,8 +110,11 @@ export class Sea {
   mesh: THREE.Mesh;
   uniforms: Record<string, THREE.IUniform>;
 
-  constructor(sunDir: THREE.Vector3) {
-    const geo = new THREE.PlaneGeometry(SIZE, SIZE, SEG, SEG);
+  private seg: number;
+
+  constructor(sunDir: THREE.Vector3, seg = 320) {
+    this.seg = seg;
+    const geo = new THREE.PlaneGeometry(SIZE, SIZE, seg, seg);
     geo.rotateX(-Math.PI / 2);
     this.uniforms = {
       uTime: { value: 0 },
@@ -166,7 +169,7 @@ export class Sea {
     for (let i = 0; i < n; i++) arr[i].copy(gusts[i]);
     u.uGustCount.value = n;
     // follow the boat on a grid so the mesh doesn't swim
-    const cell = SIZE / SEG;
+    const cell = SIZE / this.seg;
     this.mesh.position.set(Math.round(cx / cell) * cell, 0, Math.round(cz / cell) * cell);
   }
 }

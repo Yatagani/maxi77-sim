@@ -5,15 +5,17 @@ import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 
 const PORT = 4179;
+const CI = !!process.env.CI;
 const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'pipe' });
 await new Promise((r) => setTimeout(r, 2500));
 const errors = [];
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 try {
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const page = await browser.newPage({ viewport: CI ? { width: 1024, height: 640 } : { width: 1440, height: 900 } });
+  page.setDefaultTimeout(CI ? 120000 : 30000);
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   page.on('pageerror', (e) => errors.push(String(e)));
-  await page.goto(`http://localhost:${PORT}/`);
+  await page.goto(`http://localhost:${PORT}/${CI ? '?quality=low' : ''}`);
   await page.waitForSelector('.menu .card');
   mkdirSync('screenshots', { recursive: true });
   await page.waitForTimeout(1500);
