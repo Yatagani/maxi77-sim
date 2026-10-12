@@ -136,11 +136,11 @@ Visual details not covered by the sources are approximations of typical Maxi 77s
 - External: `GET https://archive-api.open-meteo.com/v1/archive?...&hourly=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=kn` (no key, CORS-enabled, CC BY 4.0 attribution shown in the UI).
 
 ## Tech
-Vite + TypeScript (strict) + Three.js 0.170. Vitest covers the physics, wind and lesson logic. A Playwright smoke script loads the built app, checks that there are no console errors and takes a screenshot.
+Vite + TypeScript (strict) + Three.js 0.170. Vitest covers the physics, wind and lesson logic. A Playwright smoke script (`npm run smoke`, run locally on a machine with a GPU) loads the built app, checks that there are no console errors and takes screenshots. It does not run in CI: GitHub runners have no GPU, and software WebGL there exceeded 15 minutes.
 
 ## Deployment
 - Private GitHub repo `Yatagani/maxi77-sim`.
-- CI is GitHub Actions: `npm ci`, typecheck, test and build on every push.
+- CI is GitHub Actions: `npm ci`, typecheck, test and build on every push. The browser smoke test is local-only (see Tech).
 - Run locally with `npm run dev`.
 - Static hosting such as GitHub Pages is possible later: Pages on a private repo needs a paid plan, or the repo can be made public.
 - No secrets.
