@@ -20,16 +20,16 @@ export const BOAT = {
   J: 3.33,
   P: 7.5,
   E: 2.5,
-  freeboardBow: 0.88,
-  freeboardMid: 0.72,
-  freeboardStern: 0.64,
+  freeboardBow: 0.96,
+  freeboardMid: 0.75,
+  freeboardStern: 0.68,
   // Derived geometry
   stemX: 3.81,
-  transomX: -3.66,
+  transomX: -3.79,
   get mastX() {
     return this.stemX - 0.08 - this.J; // tack fitting sits just aft of the stem
   },
-  mastStepZ: 1.05, // deck-stepped on the coachroof
+  mastStepZ: 1.24, // deck-stepped on the coachroof top
   get mastheadZ() {
     return 0.78 + this.I; // I measured from sheer at the mast
   },
@@ -42,7 +42,7 @@ export const BOAT = {
   // Hydrodynamics
   wettedSurface: 14,
   keel: { x: 0.25, z: -0.8, area: 1.45, ar: 2.5 },
-  rudder: { x: -3.78, z: -0.45, area: 0.32, ar: 2.0, maxAngle: 35 * DEG },
+  rudder: { x: -3.9, z: -0.45, area: 0.32, ar: 2.0, maxAngle: 35 * DEG },
   crewArm: 1.05,
 } as const;
 
