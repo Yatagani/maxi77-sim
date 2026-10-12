@@ -1,6 +1,6 @@
 # Maxi 77 Sail Trainer: spec
 
-Status: approved   Updated: 2026-10-12
+Status: approved   Updated: 2026-10-13
 
 ## Problem
 The user wants to learn how to trim and handle the sails of a **Maxi 77**, the 1972 Pelle Petterson design: a 7.62 m masthead sloop built by Mölnlycke Marin (~3,750 hulls). They want to practise in realistic wind before going out on the water. Today the options are either arcade sailing games with unrealistic sail physics or expensive desktop simulators. None of them model this boat, and none use real Oslofjord wind.
