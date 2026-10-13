@@ -139,10 +139,11 @@ Visual details not covered by the sources are approximations of typical Maxi 77s
 Vite + TypeScript (strict) + Three.js 0.170. Vitest covers the physics, wind and lesson logic. A Playwright smoke script (`npm run smoke`, run locally on a machine with a GPU) loads the built app, checks that there are no console errors and takes screenshots. It does not run in CI: GitHub runners have no GPU, and software WebGL there exceeded 15 minutes.
 
 ## Deployment
-- Private GitHub repo `Yatagani/maxi77-sim`.
+- Public GitHub repo `Yatagani/maxi77-sim` (made public 2026-10-13 at the user's request).
 - CI is GitHub Actions: `npm ci`, typecheck, test and build on every push. The browser smoke test is local-only (see Tech).
 - Run locally with `npm run dev`.
-- Static hosting such as GitHub Pages is possible later: Pages on a private repo needs a paid plan, or the repo can be made public.
+- Docker: a multi-stage `Dockerfile` builds the site with Node 22 and serves `dist/` with nginx on port 8080 (`docker build -t maxi77-sim . && docker run -p 8080:8080 maxi77-sim`). The image has no runtime secrets; the custom-date replay calls Open-Meteo from the viewer's browser.
+- Static hosting such as GitHub Pages is possible later: the repo is public, so Pages is free; deploy only when the user asks.
 - No secrets.
 
 ## Open questions
