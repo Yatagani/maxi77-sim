@@ -12,4 +12,4 @@ Spec: docs/SPEC.md   Updated: 2026-10-13
 - [x] T8 Sea, sky, islands, gust patches, cameras. (R4, R5) Verify: screenshot.
 - [x] T9 HUD, controls, menus, replay timeline, custom-date fetch. (R18, R23, R27) Verify: Playwright smoke, no console errors.
 - [x] T10 Ship: README, CI green, push. Verify: `gh run list`.
-- [ ] T11 Docker: multi-stage Dockerfile (Node build → nginx on 8080), .dockerignore, README section. (Deployment) Verify: `docker build` succeeds and `curl localhost:8080` returns the page and presets JSON.
+- [x] T11 Docker: multi-stage Dockerfile (Node build → nginx on 8080), .dockerignore, README section. (Deployment) Verify: `docker build` succeeds and `curl localhost:8080` returns the page and presets JSON.

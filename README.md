@@ -9,6 +9,17 @@ npm test           # physics, wind, lessons (52 tests)
 npm run build && npm run smoke   # headless browser smoke test + screenshots/
 ```
 
+### Run with Docker
+No Node needed, only Docker:
+```bash
+git clone https://github.com/Yatagani/maxi77-sim.git
+cd maxi77-sim
+docker build -t maxi77-sim .
+docker run -d --name maxi77 -p 8080:8080 maxi77-sim   # http://localhost:8080
+docker stop maxi77      # stop it; `docker start maxi77` to start it again
+```
+The image builds the site with Node and serves it with nginx (~75 MB).
+
 ## What you learn
 | Skill | Lessons |
 |---|---|
